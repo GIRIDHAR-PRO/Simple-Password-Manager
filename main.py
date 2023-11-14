@@ -17,14 +17,14 @@ def get_master_password():
     return getpass("Enter your master password: ")
 
 def show_passwords(data, master_password):
-    if master_password == MASTER_PASSWORD:
+    if master_password == get_master_password():
         for username, password in data.items():
             print(f"Username: {username}, Password: {password}")
     else:
         print("Incorrect master password.")
 
 def add_password(data, master_password):
-    if master_password == MASTER_PASSWORD:
+    if master_password == get_master_password():
         username = input("Enter the username: ")
         password = getpass("Enter the password: ")
         data[username] = password
@@ -34,12 +34,10 @@ def add_password(data, master_password):
         print("Incorrect master password.")
 
 def main():
-    global MASTER_PASSWORD
     MASTER_PASSWORD = get_master_password()
     data = load_data()
 
     while True:
-  
         print("\n1. Show Passwords\n2. Add Password\n3. Exit")
         choice = input("Enter your choice (1/2/3): ")
 
@@ -54,3 +52,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
